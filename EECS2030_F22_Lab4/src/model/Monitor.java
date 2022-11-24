@@ -17,8 +17,10 @@ public class Monitor extends Follower {
 		
 		String list = "[";
 		
+		
 		if(super.getNumberOfChannels() == 0) {
 			list = null;
+			return status = String.format("Monitor %s follows no channels.", super.getName());
 		}
 		else {
 			for(int i = 0; i < super.getNumberOfChannels(); i++) {
@@ -30,14 +32,14 @@ public class Monitor extends Follower {
 			list += "]";
 		}
 
-		if(list == null) {
-			this.status = String.format("Subscriber %s follows no channels and has no recommended videos.",
-					super.getName());
-		}
-		else {
+//		if(list == null) {
+//			this.status = String.format("Subscriber %s follows no channels and has no recommended videos.",
+//					super.getName());
+//		}
+//		else {
 			this.status = String.format("Monitor %s follows %s.",
 					super.getName(), list);
-		}
+//		}
 		return status;
 	}
 	

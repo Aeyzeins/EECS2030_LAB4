@@ -58,11 +58,6 @@ public class Channel {
 		f.setChannel(this);
 		this.nof++;
 
-		//		String vidList = "";
-		//		for(int i = 0; i < this.nof; i++) {
-		//			vidList += 
-		//		}
-
 		if(this.nov == 0 && follower.getClass() == Subscriber.class) {
 			follower.setStatus(String.format("Subscriber %s follows [%s] and has no recommended videos.",
 					follower.getName(), this.cafe));
@@ -72,14 +67,35 @@ public class Channel {
 					follower.getName(), this.cafe));
 		}
 
+		status = String.format("%s released no videos and is followed by %s.",
+				this.cafe, this.getStatusList());
+	}
 
+	public void unfollow(Follower follower) {
+		int index = 0;
+		for(int i = 0; i < this.nof-1; i++) {
+			if(follower.getChannelList()[i].equals(this)) {
+				follower.getChannelList()[i] = follower.getChannelList()[i+1];
+				follower.getChannelList()[i+1] = null;
+				this.followers[index] = this.followers[index+1];
+				this.followers[index+1] = null;
+				index = i;
+			}
+		}
+		this.nof--;
+		follower.setNumberOfChannels(nof);
 
+		status = String.format("%s released no videos and is followed by %s.",
+				this.cafe, this.getStatusList());
+	}
+	
+	
+	private String getStatusList() {
 		String list = "[";
 		boolean isSub = false;
 		boolean isMonitor = false;
 
 		for(int i = 0; i < this.nof; i++) {
-
 			//Check whether it is a Sub or a Monitor
 			if(this.followers[i].getClass() == Subscriber.class) {
 				if(!isSub) {
@@ -101,14 +117,8 @@ public class Channel {
 			}
 		}
 		list += "]";
-
-		status = String.format("%s released no videos and is followed by %s.",
-				this.cafe, list);
+		return list;
 	}
-
-	public void unfollow(Follower f1) {
-
-
-	}
+	
 
 }

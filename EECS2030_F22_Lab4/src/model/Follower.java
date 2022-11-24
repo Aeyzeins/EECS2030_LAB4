@@ -41,25 +41,34 @@ public class Follower {
 	
 	public String toString() {
 		
+		
+		
+		
 		return status;
 	}
 
 	public String getFollowers() {
-		String list = "";
-		
-		
-		
-		
+		String list = "";	
 		return list;
 		
 	}
+	
+	
 	
 	public Channel[] getChannelList() {
 		return this.chanList;
 	}
 	
+	public void setChannelList(Channel[] newChanList) {
+		this.chanList = newChanList;
+	}
+	
 	public int getNumberOfChannels() {
 		return this.noc;
+	}
+	
+	public void setNumberOfChannels(int newNoc) {
+		this.noc = newNoc;
 	}
 	
 	
@@ -68,7 +77,7 @@ public class Follower {
 		this.noc++;
 	}
 	
-	public String getChannel() {
+	public String getChannelCafe() {
 		
 		
 		if(this.noc-1 == 0) {

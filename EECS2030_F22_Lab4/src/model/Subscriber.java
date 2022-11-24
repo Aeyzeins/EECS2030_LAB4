@@ -20,11 +20,14 @@ public class Subscriber extends Follower {
 		
 		String list = "[";
 		
+		
+		
 		if(super.getNumberOfChannels() == 0) {
 			list = null;
 		}
 		else {
 			for(int i = 0; i < super.getNumberOfChannels(); i++) {
+				
 				list += super.getChannelList()[i].getCafe();
 				if(i < super.getNumberOfChannels()-1) {
 					list += ", ";
@@ -43,9 +46,6 @@ public class Subscriber extends Follower {
 		}
 		return status;
 	}
-	
-	
-	
 	
 	public void watch(String string, int i) {
 		
