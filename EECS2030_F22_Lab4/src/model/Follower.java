@@ -39,11 +39,7 @@ public class Follower {
 		this.status = status;
 	}
 	
-	public String toString() {
-		
-		
-		
-		
+	public String toString() {	
 		return status;
 	}
 
@@ -52,8 +48,6 @@ public class Follower {
 		return list;
 		
 	}
-	
-	
 	
 	public Channel[] getChannelList() {
 		return this.chanList;
@@ -95,6 +89,9 @@ public class Follower {
 			return list;
 		}
 	}
+	
+	
+	
 	
 }
 

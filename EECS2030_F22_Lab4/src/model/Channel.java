@@ -25,14 +25,13 @@ public class Channel {
 	public String getCafe() {
 		return this.cafe;
 	}
-	
-	
-	
+
+
+
 
 	public String toString() {
 		return status;
 	}
-
 
 	public void releaseANewVideo(String videoName) {
 		releasedVideos[this.nov] = videoName;
@@ -73,52 +72,66 @@ public class Channel {
 
 	public void unfollow(Follower follower) {
 		int index = 0;
-		for(int i = 0; i < this.nof-1; i++) {
-			if(follower.getChannelList()[i].equals(this)) {
-				follower.getChannelList()[i] = follower.getChannelList()[i+1];
-				follower.getChannelList()[i+1] = null;
+		for(int i = 0; i < this.nof; i++) {
+			if(this.followers[i] == follower) {
+				follower.getChannelList()[index] = follower.getChannelList()[index+1];
+				follower.getChannelList()[index+1] = null;
+				index = i;
 				this.followers[index] = this.followers[index+1];
 				this.followers[index+1] = null;
-				index = i;
 			}
+
 		}
+
+
 		this.nof--;
 		follower.setNumberOfChannels(nof);
-
+		
+		
+		if(this.getStatusList() != null) {
 		status = String.format("%s released no videos and is followed by %s.",
 				this.cafe, this.getStatusList());
+		}
+		else {
+			status = String.format("%s released no videos and has no followers.", this.cafe);
+		}
 	}
-	
-	
+
+
 	private String getStatusList() {
 		String list = "[";
 		boolean isSub = false;
 		boolean isMonitor = false;
 
-		for(int i = 0; i < this.nof; i++) {
-			//Check whether it is a Sub or a Monitor
-			if(this.followers[i].getClass() == Subscriber.class) {
-				if(!isSub) {
-					list += "Subscriber ";
-					isSub = true;
-				}
-				list += this.followers[i].getName();
-			}
-
-			if(this.followers[i].getClass() == Monitor.class) {
-				if(!isMonitor) {
-					list += "Monitor ";
-					isMonitor = true;
-				}
-				list += this.followers[i].getName();
-			}
-			if(i < this.nof-1) {
-				list += ", ";
-			}
+		if(this.nof == 0) {
+			return list = null;
 		}
-		list += "]";
-		return list;
+
+		else {
+			for(int i = 0; i < this.nof; i++) {
+				//Check whether it is a Sub or a Monitor
+				if(this.followers[i].getClass() == Subscriber.class) {
+					if(!isSub) {
+						list += "Subscriber ";
+						isSub = true;
+					}
+					list += this.followers[i].getName();
+				}
+
+				if(this.followers[i].getClass() == Monitor.class) {
+					if(!isMonitor) {
+						list += "Monitor ";
+						isMonitor = true;
+					}
+					list += this.followers[i].getName();
+				}
+				if(i < this.nof-1) {
+					list += ", ";
+				}
+			}
+			list += "]";
+			return list;
+		}
 	}
-	
 
 }

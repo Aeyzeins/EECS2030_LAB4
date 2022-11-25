@@ -20,10 +20,22 @@ public class Subscriber extends Follower {
 		
 		String list = "[";
 		
+		boolean isChannelEmpty = false;
+		
+		for(int i = 0; i < super.getNumberOfChannels(); i++) {
+			if(super.getChannelList()[i] == null) {
+				isChannelEmpty = true;
+			}
+		}
+		
 		
 		
 		if(super.getNumberOfChannels() == 0) {
 			list = null;
+		}
+		else if(isChannelEmpty) {
+			return this.status = String.format("Subscriber %s follows no channels and has no recommended videos.",
+					super.getName());
 		}
 		else {
 			for(int i = 0; i < super.getNumberOfChannels(); i++) {
