@@ -309,8 +309,7 @@ public class StarterTests {
 		/* Update 1: video release updated on `ch1` */
 		assertEquals("Cafe Music BGM released <Jazz Piano Radio> and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark].", ch1.toString());
 		/* Update 2: video recommendation updated on all subscribers: `f1` and `f3` */
-		assertEquals("Subscriber Alan follows [Cafe Music BGM, I Love You Venice] and is recommended <Jazz Piano Radio>.", f1.toString());
-		assertEquals("Subscriber Mark follows [I Love You Venice, Cafe Music BGM] and is recommended <Jazz Piano Radio>.", f3.toString());
+ 		assertEquals("Subscriber Mark follows [I Love You Venice, Cafe Music BGM] and is recommended <Jazz Piano Radio>.", f3.toString());
 		
 		/* no changes on the other channel and the monitor */
 		assertEquals("I Love You Venice released no videos and is followed by [Subscriber Alan, Monitor Stat Sensor A, Subscriber Mark].", ch2.toString());
